@@ -1,5 +1,3 @@
-//var MAIN_SOCKET_ID = ''
-//var DATASETS_SOCKET_ID = ''
 var socket
 var room
 
@@ -11,15 +9,18 @@ $(document).ready(function() {
     socket.on('connect', function() {
         socket.emit('connect-room', room)
     })
+
+    socket.on('from-main', function(data) {
+        console.log(data)
+    })
+
 });
 
-
-
-document.querySelector('#datasetsToMain').addEventListener('click', function() {
+document.querySelector('#toMain').addEventListener('click', function() {
     socket.emit('to-main', {
         room: room,
         data: {
-            message: 'desde datasets'
+            message: 'desde details'
         }
     })
 })

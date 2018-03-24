@@ -10,7 +10,9 @@ const room = generateGuid()
 var socket
 
 $(document).ready(function() {
-    $("#linkToDatasets").attr("href", "http://localhost:3000/datasets/index.html?r=" + room)
+    //$("#linkToDatasets").attr("href", "http://localhost:3000/datasets/index.html?r=" + room)
+    window.open('http://localhost:3000/datasets/index.html?r=' + room, '_blank')
+    window.open('http://localhost:3000/details/index.html?r=' + room, '_blank')
 
     socket = io.connect('http://localhost:3000', {'forceNew': true})
 
@@ -26,5 +28,8 @@ $(document).ready(function() {
 
 
 document.querySelector('#btnti').addEventListener('click', function() {
-    socket.emit('test-id', {message: 'hola que tal'})
+    socket.emit('to-details', {
+        room: room,
+        data: { message: 'from main' }
+    })
 })

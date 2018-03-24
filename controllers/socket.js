@@ -15,6 +15,10 @@ module.exports.listen = function(server) {
             io.sockets.in(payload.room).emit('from-datasets', payload.data)
         })
 
+        socket.on('to-details', (payload) => {
+            io.sockets.in(payload.room).emit('from-main', payload.data)
+        })
+
     })
 
 
