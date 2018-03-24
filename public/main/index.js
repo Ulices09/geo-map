@@ -1,22 +1,29 @@
-const guid = new Date().valueOf().toString() + getRandomNumber(100)
-const MAIN_ID = 'main'
-const SECONDARY_A = 'sa'
-const SECONDARY_B = 'sb'
+const room = generateGuid()
+//const MAIN_ID = 'mv'
+//const DATASETS_ID = 'dv'
+//const DETAILS_ID = 'dv'
 
-const MAIN_SOCKET_ID = guid + MAIN_ID
-const SECONDARY_A_SOCKET_ID = guid + SECONDARY_A
-const SECONDARY_B_SOCKET_ID = guid + SECONDARY_B
+//const MAIN_SOCKET_ID = guid + MAIN_ID
+//const DATASETS_SOCKET_ID = guid + DATASETS_ID
+//const DETAILS_SOCKET_ID = guid + DETAILS_ID
 
-var socket = io.connect('http://localhost:3000', {'forceNew': true})
+var socket
 
-function getRandomNumber(limit) {
-    return Math.floor((Math.random() * limit) + 1)
-}
+$(document).ready(function() {
+    $("#linkToDatasets").attr("href", "http://localhost:3000/datasets/index.html?r=" + room)
 
-socket.on('connect', function() {
-    socket.id = MAIN_SOCKET_ID
-    console.log(socket)
-})
+    socket = io.connect('http://localhost:3000', {'forceNew': true})
+
+    socket.on('connect', function() {
+        socket.emit('connect-room', room)
+    })
+
+    socket.on('from-datasets', (data) => {
+        console.log(data)
+    })
+});
+
+
 
 document.querySelector('#btnti').addEventListener('click', function() {
     socket.emit('test-id', {message: 'hola que tal'})
