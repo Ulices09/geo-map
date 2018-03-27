@@ -1,12 +1,4 @@
 const room = generateGuid()
-//const MAIN_ID = 'mv'
-//const DATASETS_ID = 'dv'
-//const DETAILS_ID = 'dv'
-
-//const MAIN_SOCKET_ID = guid + MAIN_ID
-//const DATASETS_SOCKET_ID = guid + DATASETS_ID
-//const DETAILS_SOCKET_ID = guid + DETAILS_ID
-
 var socket
 
 $(document).ready(function() {
@@ -25,11 +17,21 @@ $(document).ready(function() {
     })
 });
 
-
-
-document.querySelector('#btnti').addEventListener('click', function() {
+/*document.querySelector('#btnti').addEventListener('click', function() {
     socket.emit('to-details', {
         room: room,
         data: { message: 'from main' }
     })
+})*/
+
+document.querySelector('#rtl-section').addEventListener('click', function() {
+    console.log('ggmi')
 })
+
+mapboxgl.accessToken = 'pk.eyJ1IjoidWxpY2VzMDkiLCJhIjoiY2o4Y2Z2MTlyMGFhNzJ4c2ZycDZ3dWw5OCJ9.kq1sP4Wv-S2ehS91swYGYg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [-77.0428174, -12.0463782],
+    zoom: 12
+});

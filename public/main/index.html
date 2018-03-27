@@ -4,16 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js" ></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="index.css" />
     <title>Main</title>
 </head>
 <body>
-    <!--<a id="linkToDatasets" href="#" target="_blank">Datasets</a>
-    <a id="linkToDetails" href="#" target="_blank">Detalle</a>-->
-    <button id="btnti" >Test new id</button>
+    <div id="map">
+        <div class="top-menu-wrapper">
+            <div class="top-menu">
+                <div class="top-menu-item">
+                    <img id="rtl-section" src="https://cdn2.iconfinder.com/data/icons/human-resource-1/50/30-256.png" 
+                        width="40" height="40" style="margin-top: 5; margin-bottom: 5" 
+                    />
+                </div>
+                <div class="top-menu-item">
+                    <img id="rtl-section" src="https://cdn1.iconfinder.com/data/icons/powerful-seo-icon-set/512/google_place__.png" 
+                        width="40" height="40" style="margin-top: 5; margin-bottom: 5" 
+                    />
+                </div>
+                <div class="top-menu-item">
+                        <img id="rtl-section" src="https://cdn0.iconfinder.com/data/icons/map-and-navigation-2/65/66-512.png" 
+                            width="40" height="40" style="margin-top: 5; margin-bottom: 5" 
+                        />
+                </div>
+                <!--<button id="btnti" >Click me</button>-->
+            </div>
+            <div class="float">
+                <i class="fas fa-microphone my-float"></i>
+            </div>
+        </div>
+    </div>
+
+
 
     <script src="../script.js"></script>
     <script src="index.js" ></script>
