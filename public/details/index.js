@@ -13,7 +13,6 @@ $(document).ready(function() {
     socket.on('from-main', function(data) {
         console.log(data)
     })
-
 });
 
 document.querySelector('#toMain').addEventListener('click', function() {
