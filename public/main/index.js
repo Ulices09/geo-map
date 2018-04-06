@@ -1,6 +1,6 @@
 const room = generateGuid()
 var socket
-var recognition
+//var recognition
 
 $(document).ready(function() {
     //$("#linkToDatasets").attr("href", "http://localhost:3000/datasets/index.html?r=" + room)
@@ -17,25 +17,37 @@ $(document).ready(function() {
         console.log(data)
     })
 
-    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
-    recognition = new SpeechRecognition();
-    recognition.lang = 'es-ES'
-    recognition.interimResults = false
-    recognition.maxAlternatives = 1
+    socket.on('nlp-response', function(data) {
+        console.log(data)
+    })
 
-    recognition.onresult = function(event) {
-        //var res = event.results[0];
-        console.log(event.results[0][0])
-    }
-    
-    recognition.onspeechend = function() {
-        console.log("Recognition stop")
-        recognition.stop();
-    }
-    
-    recognition.onerror = function(event) {
-        diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
-    }
+    responsiveVoice.setDefaultVoice("Spanish Latin American Female");
+
+    annyang.setLanguage('es-PE');
+
+    var commands = {
+        'Oye Lisa': function() { 
+            //console.log('Oye lisa escuchado')
+            alert('Hola!');
+        }
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    annyang.addCallback('result', function(whatWasHeardArray) {
+        console.log(whatWasHeardArray)
+        logger.disableLogger();
+        responsiveVoice.speak(whatWasHeardArray[0]);
+        logger.enableLogger();
+
+        socket.emit('process-text-nlp', {
+            room: room,
+            data: { text: whatWasHeardArray[0] }
+        })
+    });
+
+    annyang.start();
 });
 
 /*document.querySelector('#btnti').addEventListener('click', function() {
@@ -45,12 +57,34 @@ $(document).ready(function() {
     })
 })*/
 
+var logger = function()
+{
+    var oldConsoleLog = null;
+    var pub = {};
+
+    pub.enableLogger =  function enableLogger() 
+                        {
+                            if(oldConsoleLog == null)
+                                return;
+
+                            window['console']['log'] = oldConsoleLog;
+                        };
+
+    pub.disableLogger = function disableLogger()
+                        {
+                            oldConsoleLog = console.log;
+                            window['console']['log'] = function() {};
+                        };
+
+    return pub;
+}();
+
 document.querySelector('#rtl-section').addEventListener('click', function() {
     console.log('ggmi')
 })
 
 document.querySelector('#btnMic').addEventListener('click', function() {
-    recognition.start()
+    //recognition.start()
 })
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidWxpY2VzMDkiLCJhIjoiY2o4Y2Z2MTlyMGFhNzJ4c2ZycDZ3dWw5OCJ9.kq1sP4Wv-S2ehS91swYGYg';

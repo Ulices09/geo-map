@@ -1,4 +1,5 @@
 var socket_io = require('socket.io')
+const language = require('@google-cloud/language')
 
 module.exports.listen = function(server) {
     io = socket_io.listen(server)
@@ -17,6 +18,32 @@ module.exports.listen = function(server) {
 
         socket.on('to-details', (payload) => {
             io.sockets.in(payload.room).emit('from-main', payload.data)
+        })
+
+        socket.on('process-text-nlp', (payload) => {
+            
+            const client = new language.LanguageServiceClient()
+            //console.log(client)
+
+            const document = {
+                content: payload.data.text,
+                type: 'PLAIN_TEXT',
+            };
+
+            client
+            .analyzeSyntax({document: document})
+            .then(results => {
+                //const sentiment = results[0].documentSentiment;
+
+                io.sockets.in(payload.room).emit('nlp-response', results)
+
+                /*console.log(`Text: ${text}`);
+                console.log(`Sentiment score: ${sentiment.score}`);
+                console.log(`Sentiment magnitude: ${sentiment.magnitude}`);*/
+            })
+            .catch(err => {
+                console.error('ERROR:', err);
+            });
         })
 
     })
