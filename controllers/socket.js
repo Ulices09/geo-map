@@ -22,8 +22,9 @@ module.exports.listen = function(server) {
 
         socket.on('process-text-nlp', (payload) => {
             
-            const client = new language.LanguageServiceClient()
-            //console.log(client)
+            const client = new language.LanguageServiceClient({
+                keyFilename: './auth/MMINLPService-8cc128e72238.json'
+            });
 
             const document = {
                 content: payload.data.text,
