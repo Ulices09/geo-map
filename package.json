@@ -1,7 +1,7 @@
 {
-  "name": "socket-demo01",
+  "name": "geo-map",
   "version": "1.0.0",
-  "description": "demo using socket io",
+  "description": "gep-map tp2",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js"
