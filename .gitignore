@@ -62,3 +62,6 @@ typings/
 
 #credentials
 auth/
+
+#others
+.DS_Store

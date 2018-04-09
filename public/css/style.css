@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  #searchGroup {
+    margin-bottom: 10px
+  }
+  
+  .controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .geoSearch {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 300px;
+  }
+  
+  .geoSearch:focus {
+    border-color: #4d90fe;
+  }
+  
+  pac-container {
+    font-family: Roboto;
+  }
+  
+  #type-selector {
+    color: #fff;
+    background-color: #4d90fe;
+    padding: 5px 11px 0px 11px;
+  }
+  
+  #type-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #target {
+    width: 345px;
+  }
+  
+  .top-menu-wrapper {
+    position: absolute;
+    z-index: 1;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .top-menu {
+    background-color: black;
+    opacity: 0.7;
+    width: 40%;
+    display: inline-block;
+    margin-top: 15px;
+    border-radius: 10px;
+  }
+  
+  .top-menu-item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 23%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+
+  .top-menu-item.selected {
+    opacity: 1.0;
+  }
+  
+  .top-menu-item:hover {
+    background-color: gray;
+  }
+  
+  .float{
+      position:fixed;
+      width:60px;
+      height:60px;
+      bottom:40px;
+      right:40px;
+      background-color: black;
+      color:#FFF;
+      border-radius:50px;
+      text-align:center;
+      box-shadow: 2px 2px 3px #999;
+  }
+  
+  .float:hover{
+    background-color: gray;
+  }
+  
+  .my-float{
+    margin-top: 17px;
+    font-size: 25px;
+  }
