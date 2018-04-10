@@ -6,10 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Búsqueda - Principal</title>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js" ></script>
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    
+
     <link rel="stylesheet" href="/search/css/main.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <h1>Búsqueda - Principal</h1>
+    <div id="map">
+        <div class="top-menu-wrapper">
+            <div class="top-menu">
+                <div id="realtime-section" class="top-menu-item">
+                    <img src="https://cdn2.iconfinder.com/data/icons/human-resource-1/50/30-256.png" 
+                        width="40" height="40" style="margin-top: 5; margin-bottom: 5" 
+                    />
+                </div>
+                <div id="search-section" class="top-menu-item selected">
+                    <img src="https://cdn1.iconfinder.com/data/icons/powerful-seo-icon-set/512/google_place__.png" 
+                        width="40" height="40" style="margin-top: 5; margin-bottom: 5" 
+                    />
+                </div>
+                <div id="navigation-section" class="top-menu-item">
+                        <img src="https://cdn0.iconfinder.com/data/icons/map-and-navigation-2/65/66-512.png" 
+                            width="40" height="40" style="margin-top: 5; margin-bottom: 5" 
+                        />
+                </div>
+                <div id="datasets-section" class="top-menu-item">
+                        <img src="http://vitaebrasil.com/img/icon/charts.PNG" 
+                            width="40" height="40" style="margin-top: 5; margin-bottom: 5" 
+                        />
+                </div>
+            </div>
+            <h1>Búsqueda - Principal</h1>
+        </div>
+    </div>
 
     <script type="text/javascript" src="/js/script.js"></script>
     <script type="text/javascript" src="/search/js/main.js" ></script>

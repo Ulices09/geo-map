@@ -10,6 +10,17 @@ function getRandomNumber(limit) {
     return Math.floor((Math.random() * limit) + 1)
 }
 
+function goToPage(page, socket, room) {
+    const event = 'go-to-' + page + '-section'
+    const url = 'http://localhost:3000/' + page + '/main?r=' + room
+
+    socket.emit(event, {
+        room: room
+    })
+
+    window.location.href = url
+}
+
 var logger = function()
 {
     var oldConsoleLog = null;

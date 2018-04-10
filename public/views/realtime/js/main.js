@@ -20,20 +20,8 @@ $(document).ready(function() {
     responsiveVoice.setDefaultVoice("Spanish Latin American Female");
     annyang.setLanguage('es-PE');
 
-    // var commands = {
-    //     'Oye': function() { 
-    //         alert('Hola!');
-    //     }
-    // };
-
-    // Add our commands to annyang
-    //annyang.addCommands(commands);
-
     annyang.addCallback('result', function(whatWasHeardArray) {
         console.log(whatWasHeardArray)
-        logger.disableLogger();
-        responsiveVoice.speak(whatWasHeardArray[0]);
-        logger.enableLogger();
 
         socket.emit('process-text-nlp', {
             room: room,
@@ -52,18 +40,18 @@ var map = new mapboxgl.Map({
     zoom: 12
 });
 
-document.querySelector('#real-time-section').addEventListener('click', function() {
-    console.log('real time')
-})
+// document.querySelector('#real-time-section').addEventListener('click', function() {
+//     console.log('real time')
+// })
 
 document.querySelector('#search-section').addEventListener('click', function() {
-    console.log('search')
+    goToPage('search', socket, room)
 })
 
 document.querySelector('#navigation-section').addEventListener('click', function() {
-    console.log('navigation')
+    goToPage('navigation', socket, room)
 })
 
 document.querySelector('#datasets-section').addEventListener('click', function() {
-    console.log('datasets')
+    goToPage('datasets', socket, room)
 })

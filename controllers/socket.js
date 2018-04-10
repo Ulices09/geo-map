@@ -5,12 +5,32 @@ module.exports.listen = function(server) {
     io = socket_io.listen(server)
 
     io.on('connection', (socket) => {
-        //console.log(`Se ha conectado el cliente ${socket.id}`)
 
         socket.on('connect-room', (room) => {
             socket.join(room)
             console.log('cliento connected to ' + room)
         })
+
+
+        //redirections
+        socket.on('go-to-realtime-section', function(payload) {
+            io.sockets.in(payload.room).emit('redirect-to-realtime-section', { room: payload.room})
+        })
+
+        socket.on('go-to-navigation-section', function(payload) {
+            io.sockets.in(payload.room).emit('redirect-to-navigation-section', { room: payload.room})
+        })
+
+        socket.on('go-to-datasets-section', function(payload) {
+            io.sockets.in(payload.room).emit('redirect-to-datasets-section', { room: payload.room})
+        })
+
+        socket.on('go-to-search-section', function(payload) {
+            io.sockets.in(payload.room).emit('redirect-to-search-section', { room: payload.room})
+        })
+
+
+        
 
         socket.on('to-main', (payload) => {
             io.sockets.in(payload.room).emit('from-datasets', payload.data)
