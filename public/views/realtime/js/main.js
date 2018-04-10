@@ -9,12 +9,8 @@ $(document).ready(function() {
         socket.emit('connect-room', room)
     })
 
-    socket.on('from-datasets', (data) => {
-        console.log(data)
-    })
-
     socket.on('nlp-response', function(data) {
-        console.log(data)
+        handleNLPResult(data)
     })
 
     responsiveVoice.setDefaultVoice("Spanish Latin American Female");
@@ -55,3 +51,35 @@ document.querySelector('#navigation-section').addEventListener('click', function
 document.querySelector('#datasets-section').addEventListener('click', function() {
     goToPage('datasets', socket, room)
 })
+
+//TODO: separar en un script por cada módulo
+function handleNLPResult(result) {
+
+    console.log(result)
+    if(result.validation != null) {
+        speak(result.validation.message)
+        return;
+    }
+
+    console.log(result.response.action)
+
+    switch (result.response.action) {
+        case 'redirect-to-realtime':
+            // logger.disableLogger();
+            // responsiveVoice.speak('Ya estás en esa opción');
+            // logger.enableLogger();
+            speak('Ya estás en esa opción')            
+        case 'redirect-to-datasets':
+            document.getElementById('datasets-section').click()
+            break
+        case 'redirect-to-navigation':
+            document.getElementById('navigation-section').click()
+            break
+        case 'redirect-to-search':
+            document.getElementById('search-section').click()
+            break
+        default:
+            break;
+    }
+
+}

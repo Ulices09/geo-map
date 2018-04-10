@@ -42,3 +42,11 @@ var logger = function()
 
     return pub;
 }();
+
+function speak(message) {
+    annyang.pause()
+    logger.disableLogger();
+    responsiveVoice.speak(message);
+    logger.enableLogger();
+    setTimeout(function(){ annyang.resume() }, 4000);
+}

@@ -1,5 +1,6 @@
 var socket_io = require('socket.io')
 const language = require('@google-cloud/language')
+var nlpHelper = require('../helpers/nlp')
 
 module.exports.listen = function(server) {
     io = socket_io.listen(server)
@@ -29,17 +30,7 @@ module.exports.listen = function(server) {
             io.sockets.in(payload.room).emit('redirect-to-search-section', { room: payload.room})
         })
 
-
-        
-
-        socket.on('to-main', (payload) => {
-            io.sockets.in(payload.room).emit('from-datasets', payload.data)
-        })
-
-        socket.on('to-details', (payload) => {
-            io.sockets.in(payload.room).emit('from-main', payload.data)
-        })
-
+        //NLP
         socket.on('process-text-nlp', (payload) => {
             
             const client = new language.LanguageServiceClient({
@@ -49,14 +40,17 @@ module.exports.listen = function(server) {
             const document = {
                 content: payload.data.text,
                 type: 'PLAIN_TEXT',
+                language: 'es'
             };
 
             client
             .analyzeSyntax({document: document})
+            //.analyzeEntities({document: document})            
             .then(results => {
                 //const sentiment = results[0].documentSentiment;
+                var nlpResult = nlpHelper.process_nlp(results[0].tokens, null)
 
-                io.sockets.in(payload.room).emit('nlp-response', results)
+                io.sockets.in(payload.room).emit('nlp-response', nlpResult)
 
                 /*console.log(`Text: ${text}`);
                 console.log(`Sentiment score: ${sentiment.score}`);

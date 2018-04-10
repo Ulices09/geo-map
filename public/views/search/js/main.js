@@ -10,7 +10,7 @@ $(document).ready(function() {
     })
 
     socket.on('nlp-response', function(data) {
-        console.log(data)
+        handleNLPResult(data)
     })
 
     responsiveVoice.setDefaultVoice("Spanish Latin American Female");
@@ -39,3 +39,30 @@ document.querySelector('#navigation-section').addEventListener('click', function
 document.querySelector('#datasets-section').addEventListener('click', function() {
     goToPage('datasets', socket, room)
 })
+
+//TODO: separar en un script por cada módulo
+function handleNLPResult(result) {
+    if(result.validation != null) {
+        //TODO: Crear propio script para respuestas de voz
+        speak(result.validation.message)
+        return;
+    }
+
+    switch (result.response.action) {
+        case 'redirect-to-realtime':
+            document.getElementById('realtime-section').click()
+            break
+        case 'redirect-to-datasets':
+            document.getElementById('datasets-section').click()
+            break
+        case 'redirect-to-navigation':
+            document.getElementById('navigation-section').click()
+            break
+        case 'redirect-to-search':
+            speak('Ya estás en esa opción')
+            break
+        default:
+            break;
+    }
+
+}
